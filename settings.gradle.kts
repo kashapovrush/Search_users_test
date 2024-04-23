@@ -23,3 +23,4 @@ rootProject.name = "Search users test"
 include(":app")
 include(":core")
 include(":features-mobile")
+include(":core:network")
