@@ -1,20 +1,18 @@
 plugins {
-    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.ksp)
 }
 
 android {
-    namespace = "com.kashapovrush.searchuserstest"
+    namespace = "com.kashapovrush.search_users_features"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.kashapovrush.searchuserstest"
         minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -40,21 +38,25 @@ android {
 }
 
 dependencies {
-
-    //add project
-    implementation(project(":core:network"))
-    implementation(project(":features-mobile:common"))
     implementation(project(":features-mobile:palette"))
-    implementation(project(":features-mobile:search-users-feature"))
+    implementation(project(":features-mobile:common"))
+    implementation(project(":core:network"))
+    implementation(project(":core:utils"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    implementation(libs.androidx.activity)
-    implementation(libs.androidx.constraintlayout)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+//    testImplementation(libs.junit)
+//    androidTestImplementation(libs.androidx.junit)
+//    androidTestImplementation(libs.androidx.espresso.core)
 
+    implementation(libs.dagger.core)
+    ksp(libs.dagger.compiler)
     implementation(libs.fragment.manager)
+    implementation(libs.gilde)
+
+
+    implementation(libs.coroutine.core)
+    implementation(libs.coroutine.android)
+    implementation(libs.lifecycle.viewmodel.ktx)
 }
