@@ -12,11 +12,12 @@ class SearchUsersAdapter(val context: Context): ListAdapter<User, SearchViewView
     DiffUtilSearchUsers()
 ) {
 
+    var onClickListenerToItem: ((String) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewViewHolder {
         return SearchViewViewHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.item_found_user, parent, false
+                com.kashapovrush.palette.R.layout.item_found_user, parent, false
             )
         )
     }
@@ -28,6 +29,9 @@ class SearchUsersAdapter(val context: Context): ListAdapter<User, SearchViewView
         holder.username.text = user.login
         holder.followers.text = user.followers.toString()
 
+        holder.view.setOnClickListener {
+            onClickListenerToItem?.invoke(user.login ?: "")
+        }
     }
 
 

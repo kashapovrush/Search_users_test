@@ -1,6 +1,7 @@
 package com.kashapovrush.network.api
 
 import com.kashapovrush.network.dto.FollowerDto
+import com.kashapovrush.network.dto.RepositoriesDto
 import com.kashapovrush.network.dto.ResponseUsers
 import com.kashapovrush.network.dto.UserDto
 import kotlinx.coroutines.flow.Flow
@@ -19,4 +20,9 @@ interface ApiService {
     suspend fun getFollowers(
         @Path("name") name: String
     ): List<UserDto>
+
+    @GET("users/{login}/repos")
+    suspend fun getUserRepositories(
+        @Path("login") login: String
+    ): List<RepositoriesDto>
 }

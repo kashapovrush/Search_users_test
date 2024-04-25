@@ -5,8 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import com.kashapovrush.search_users_features.ui.SearchUsersFragment
 import com.kashapovrush.searchuserstest.databinding.ActivityMainBinding
+import com.kashapovrush.user_repositories_features.ui.UserRepositoriesFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), SearchUsersFragment.ClickListenerFromSearchUsers {
 
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,5 +25,12 @@ class MainActivity : AppCompatActivity() {
                 replace(R.id.container, SearchUsersFragment.newInstance())
             }
 
+    }
+
+    override fun clickListenerToUserRepositories(login: String) {
+        supportFragmentManager.commit {
+            addToBackStack(null)
+            replace(R.id.container, UserRepositoriesFragment.newInstance(login))
+        }
     }
 }
