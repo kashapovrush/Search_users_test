@@ -43,6 +43,10 @@ dependencies {
 
     //add project
     implementation(project(":core:network"))
+    implementation(project(":features-mobile:common"))
+    implementation(project(":features-mobile:palette"))
+    implementation(project(":features-mobile:search-users-feature"))
+    implementation(project(":features-mobile:user-repositories-feature"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -52,4 +56,6 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation(libs.fragment.manager)
 }

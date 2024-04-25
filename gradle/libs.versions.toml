@@ -1,13 +1,13 @@
 [versions]
-agp = "8.3.2"
+agp = "8.2.0"
 kotlin = "1.9.21"
-coreKtx = "1.13.0"
+coreKtx = "1.12.0"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
 appcompat = "1.6.1"
 material = "1.11.0"
-activity = "1.9.0"
+activity = "1.8.0"
 constraintlayout = "2.1.4"
 fragment = "1.6.2"
 glide = "4.16.0"
@@ -15,7 +15,8 @@ retrofit = "2.11.0"
 dagger = "2.48.1"
 ksp = "1.9.22-1.0.16"
 okhttp = "4.11.0"
-
+coroutine = "1.8.0"
+lifecicle = "2.4.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -43,6 +44,12 @@ dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", versi
 
 # OkHttp logging
 okhttp-logging = {group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp"}
+
+# Coroutines
+coroutine-android = {group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutine"}
+coroutine-core = {group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutine"}
+lifecycle-viewmodel-ktx = {group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecicle"}
+
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
