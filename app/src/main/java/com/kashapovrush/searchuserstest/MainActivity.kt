@@ -5,9 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import com.kashapovrush.search_users_features.ui.SearchUsersFragment
 import com.kashapovrush.searchuserstest.databinding.ActivityMainBinding
+
+class MainActivity : AppCompatActivity() {
+
 import com.kashapovrush.user_repositories_features.ui.UserRepositoriesFragment
 
 class MainActivity : AppCompatActivity(), SearchUsersFragment.ClickListenerFromSearchUsers {
+
 
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {

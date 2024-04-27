@@ -29,6 +29,11 @@ class SearchUsersFragment : Fragment() {
 
     private lateinit var viewModel: SearchUsersViewModel
 
+
+    val list = mutableListOf<User>()
+    val newList = mutableListOf<User>()
+
+
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
@@ -107,6 +112,7 @@ class SearchUsersFragment : Fragment() {
     interface ClickListenerFromSearchUsers {
 
         fun clickListenerToUserRepositories(login: String)
+
     }
 
     companion object {
