@@ -1,5 +1,6 @@
 package com.kashapovrush.network.dto
 
+
 data class UserDto(
     val avatar_url: String,
     val events_url: String,

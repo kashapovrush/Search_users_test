@@ -59,4 +59,6 @@ dependencies {
     implementation(libs.coroutine.core)
     implementation(libs.coroutine.android)
     implementation(libs.lifecycle.viewmodel.ktx)
+
+    implementation(libs.jetpack.paging.common)
 }

@@ -16,7 +16,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+
     }
+
 }
 
 rootProject.name = "Search users test"
@@ -29,3 +31,6 @@ include(":features-mobile:common")
 include(":features-mobile:palette")
 include(":core:utils")
 include(":features-mobile:user-repositories-feature")
+include(":core:auth")
+include(":features-mobile:auth-feature")
+include(":features-mobile:auth-user-feature")

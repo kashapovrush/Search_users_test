@@ -1,4 +1,4 @@
-package com.kashapovrush.search_users_features.di
+package com.kashapovrush.utils
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey
@@ -6,4 +6,4 @@ import kotlin.reflect.KClass
 
 @MapKey
 @Retention(AnnotationRetention.RUNTIME)
-annotation class ViewModuleKey(val value: KClass<out ViewModel>)
+annotation class ViewModelKey(val value: KClass<out ViewModel>)

@@ -3,12 +3,11 @@ package com.kashapovrush.common.adapter.searchusers
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
+import androidx.paging.PagingDataAdapter
 import com.bumptech.glide.Glide
-import com.kashapovrush.common.R
-import com.kashapovrush.common.entity.User
+import com.kashapovrush.network.dto.User
 
-class SearchUsersAdapter(val context: Context): ListAdapter<User, SearchViewViewHolder>(
+class SearchUsersAdapter(val context: Context): PagingDataAdapter<User, SearchViewViewHolder>(
     DiffUtilSearchUsers()
 ) {
 
@@ -25,12 +24,12 @@ class SearchUsersAdapter(val context: Context): ListAdapter<User, SearchViewView
     override fun onBindViewHolder(holder: SearchViewViewHolder, position: Int) {
         val user = getItem(position)
 
-        Glide.with(context).load(user.avatarUrl).into(holder.imageUser)
-        holder.username.text = user.login
-        holder.followers.text = user.followers.toString()
+        Glide.with(context).load(user?.avatarUrl).into(holder.imageUser)
+        holder.username.text = user?.login
+        holder.followers.text = user?.countFollowers.toString()
 
         holder.view.setOnClickListener {
-            onClickListenerToItem?.invoke(user.login ?: "")
+            onClickListenerToItem?.invoke(user?.login ?: "")
         }
     }
 

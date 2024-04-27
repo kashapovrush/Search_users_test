@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("androidx.navigation.safeargs")
 }
 
 android {
@@ -15,6 +16,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
     }
 
     buildTypes {
@@ -43,19 +45,28 @@ dependencies {
 
     //add project
     implementation(project(":core:network"))
+    implementation(project(":core:auth"))
     implementation(project(":features-mobile:common"))
     implementation(project(":features-mobile:palette"))
     implementation(project(":features-mobile:search-users-feature"))
     implementation(project(":features-mobile:user-repositories-feature"))
+    implementation(project(":features-mobile:auth-feature"))
+    implementation(project(":features-mobile:auth-user-feature"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.navigation.fragment)
+    implementation(libs.androidx.navigation.ui)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    implementation(libs.oauth.appauth)
+
     implementation(libs.fragment.manager)
+
+    implementation (libs.browser.core)
 }
