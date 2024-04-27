@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Search users test</string>
+    <string name="search_without_authorization"><u>Search without authorization</u></string>
 </resources>

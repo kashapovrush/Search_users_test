@@ -1,5 +1,4 @@
 package com.kashapovrush.user_repositories_features.ui
-
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -10,15 +9,14 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.kashapovrush.common.adapter.searchusers.SearchUsersAdapter
 import com.kashapovrush.common.adapter.userrepository.UserRepositoriesAdapter
-import com.kashapovrush.common.entity.User
 import com.kashapovrush.common.viewmodel.UserRepositoriesViewModel
 import com.kashapovrush.user_repositories_features.databinding.FragmentUserRepositoriesBinding
 import com.kashapovrush.user_repositories_features.di.UserRepositoriesComponentProvider
 import com.kashapovrush.utils.ViewModelFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -27,6 +25,7 @@ class UserRepositoriesFragment : Fragment() {
     private lateinit var binding: FragmentUserRepositoriesBinding
     private lateinit var viewModel: UserRepositoriesViewModel
     private lateinit var userRepositoriesAdapter: UserRepositoriesAdapter
+    private val scope = CoroutineScope(Dispatchers.IO)
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -51,7 +50,7 @@ class UserRepositoriesFragment : Fragment() {
         val login = arguments?.getString(EXTRA_LOGIN)
 
         setRecyclerView()
-        CoroutineScope(Dispatchers.IO).launch {
+        scope.launch {
             viewModel.getUserRepositories(login ?: "")
         }
 
@@ -61,7 +60,6 @@ class UserRepositoriesFragment : Fragment() {
 
         viewModel.error.observe(viewLifecycleOwner) {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
-            Log.d("MainActivityTest", it)
         }
 
         viewModel.loading.observe(viewLifecycleOwner) { isLoading ->
@@ -79,6 +77,11 @@ class UserRepositoriesFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = userRepositoriesAdapter
         }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        scope.cancel()
     }
 
     companion object {

@@ -31,12 +31,17 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
 
     implementation(project(":core:network"))
     implementation(project(":features-mobile:palette"))
+    implementation(project((":core:auth")))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -53,4 +58,11 @@ dependencies {
     implementation(libs.coroutine.core)
     implementation(libs.coroutine.android)
     implementation(libs.lifecycle.viewmodel.ktx)
+    implementation(libs.lifecycle.runtime)
+
+    implementation(libs.oauth.appauth)
+
+    implementation (libs.browser.core)
+
+    implementation(libs.jetpack.paging.common)
 }
