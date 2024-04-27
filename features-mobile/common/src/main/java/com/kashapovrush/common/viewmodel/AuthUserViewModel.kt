@@ -7,12 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.kashapovrush.common.entity.UserInfo
 import com.kashapovrush.common.mapper.toInfo
 import com.kashapovrush.network.api.ApiService
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -29,23 +23,22 @@ class AuthUserViewModel @Inject constructor(
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loading
 
-    private val success = Channel<UserInfo>(Channel.BUFFERED)
 
-    val authSuccessFlow: Flow<UserInfo>
-        get() = success.receiveAsFlow()
-
-
-    suspend fun getUserInfo() = flow {
-        emit(apiService.getUserProfile())
-    }.map {
-        it.toInfo()
-    }.catch {
+    fun getUserInfo() {
         viewModelScope.launch {
-            _error.value = it.message
+            _loading.value = true
+            runCatching {
+                apiService.getUserProfile()
+            }.map {
+                it.toInfo()
+            }.onFailure {
+                _loading.value = false
+                _error.value = it.message
+            }.onSuccess {
+                _loading.value = false
+                _user.value = it
+            }
         }
-    }.collect {
-        viewModelScope.launch {
-            success.send(it)
-        }
+
     }
 }

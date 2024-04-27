@@ -65,11 +65,6 @@ browser-core = { group = "androidx.browser", name = "browser", version.ref = "br
 # Jetpack Paging 3
 jetpack-paging-common = { group = "androidx.paging", name = "paging-runtime", version.ref = "paging" }
 
-# Jetpack navigation
-androidx-navigation-safe-args ={ module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref = "navigation" }
-androidx-navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation" }
-androidx-navigation-ui = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation" }
-
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
