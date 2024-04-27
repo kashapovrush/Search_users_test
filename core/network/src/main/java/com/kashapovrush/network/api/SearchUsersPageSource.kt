@@ -29,20 +29,15 @@ class SearchUsersPageSource @AssistedInject constructor(
         val pageSize = params.loadSize.coerceAtMost(10)
 
         val response = apiService.searchUsers(query = query, perPage = pageSize, page = page)
-        Log.d("MainActivityTest", "response ${response.body()}")
 
         if (response.isSuccessful) {
             val users = checkNotNull(response.body()?.users?.map { userDto ->
-                Log.d("MainActivityTest", "userDto $userDto")
 
                 val responseFollowerForCountUser = apiService.getFollowers(userDto.login)
-                Log.d("MainActivityTest", "beforeResponseFollowerForCountUser ${responseFollowerForCountUser.body()}")
                 if (responseFollowerForCountUser.isSuccessful) {
-                    Log.d("MainActivityTest", "afterResponseFollowerForCountUser ${responseFollowerForCountUser.body()}")
                     userDto.toUserEntity(responseFollowerForCountUser.body()?.size ?: 0)
 
                 } else {
-                    Log.d("MainActivityTest", "error ${responseFollowerForCountUser.errorBody()}")
                     userDto.toUserEntity(0)
                 }
             })
