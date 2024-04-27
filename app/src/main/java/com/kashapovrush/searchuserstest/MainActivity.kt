@@ -8,6 +8,11 @@ import com.kashapovrush.searchuserstest.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
+import com.kashapovrush.user_repositories_features.ui.UserRepositoriesFragment
+
+class MainActivity : AppCompatActivity(), SearchUsersFragment.ClickListenerFromSearchUsers {
+
+
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -24,5 +29,12 @@ class MainActivity : AppCompatActivity() {
                 replace(R.id.container, SearchUsersFragment.newInstance())
             }
 
+    }
+
+    override fun clickListenerToUserRepositories(login: String) {
+        supportFragmentManager.commit {
+            addToBackStack(null)
+            replace(R.id.container, UserRepositoriesFragment.newInstance(login))
+        }
     }
 }

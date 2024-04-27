@@ -24,7 +24,13 @@ include(":app")
 include(":core")
 include(":features-mobile")
 include(":core:network")
+
 include(":features-mobile:search-users-feature")
 include(":features-mobile:common")
 include(":features-mobile:palette")
 include(":core:utils")
+
+include(":features-mobile:user-repositories-feature")
+
+
+

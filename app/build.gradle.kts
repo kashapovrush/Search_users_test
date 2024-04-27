@@ -47,6 +47,9 @@ dependencies {
     implementation(project(":features-mobile:palette"))
     implementation(project(":features-mobile:search-users-feature"))
 
+    implementation(project(":features-mobile:user-repositories-feature"))
+
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
