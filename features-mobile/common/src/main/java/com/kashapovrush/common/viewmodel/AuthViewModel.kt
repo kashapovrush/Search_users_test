@@ -50,7 +50,7 @@ class AuthViewModel @Inject constructor(
     }
 
     fun onAuthCodedFailed(exception: AuthorizationException) {
-        toastEventChannel.trySendBlocking(0)
+        toastEventChannel.trySendBlocking(exception.code)
     }
 
     fun onAuthCodeReceived(token: TokenRequest) {

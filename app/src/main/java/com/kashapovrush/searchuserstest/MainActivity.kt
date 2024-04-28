@@ -10,8 +10,8 @@ import com.kashapovrush.searchuserstest.databinding.ActivityMainBinding
 import com.kashapovrush.user_repositories_features.ui.UserRepositoriesFragment
 
 
-
-class MainActivity : AppCompatActivity(), SearchUsersFragment.ClickListenerFromSearchUsers, AuthFragment.ClickListenerFromAuthFragment {
+class MainActivity : AppCompatActivity(), SearchUsersFragment.ClickListenerFromSearchUsers,
+    AuthFragment.ClickListenerFromAuthFragment {
 
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,11 +19,9 @@ class MainActivity : AppCompatActivity(), SearchUsersFragment.ClickListenerFromS
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         supportFragmentManager.commit {
             replace(R.id.container, AuthFragment.newInstance())
         }
-
     }
 
     override fun clickListenerToUserRepositories(login: String) {

@@ -15,8 +15,10 @@ import com.kashapovrush.user_repositories_features.di.UserRepositoriesComponent
 import com.kashapovrush.user_repositories_features.di.UserRepositoriesComponentProvider
 
 
-class SearchUsersApp : Application(), SearchUsersComponentProvider,
-    UserRepositoriesComponentProvider, AuthComponentProvider, AuthUserComponentProvider {
+class SearchUsersApp : Application(),
+    SearchUsersComponentProvider,
+    UserRepositoriesComponentProvider, AuthComponentProvider, AuthUserComponentProvider
+{
     override fun getSearchUsersComponent(): SearchUsersComponent {
         return DaggerSearchUsersComponent.factory().create(this)
     }

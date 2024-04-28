@@ -16,7 +16,7 @@ interface ApiService {
     @GET("search/users")
     suspend fun searchUsers(
         @Query("q") query: String,
-        @Query("per_page") @androidx.annotation.IntRange(from = 1, to = 10) perPage: Int = 10,
+        @Query("per_page") @IntRange(from = 1, to = 10) perPage: Int = 10,
         @Query("page") @IntRange(from = 1) page: Int = 1
     ): Response<ResponseUsers>
 
